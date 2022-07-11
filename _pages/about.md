@@ -4,8 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+[kione](https://github.com/ki5n2)
 
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+[^1]: 추후 업데이트 예정
