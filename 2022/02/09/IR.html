@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>IR 5. if문, if~else문, 중첩 | ki5n2(●’◡’●)</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="IR 5. if문, if~else문, 중첩" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="작성완료" />
+<meta property="og:description" content="작성완료" />
+<link rel="canonical" href="https://ki5n2.github.io/cobalt-blue/2022/02/09/IR.html" />
+<meta property="og:url" content="https://ki5n2.github.io/cobalt-blue/2022/02/09/IR.html" />
+<meta property="og:site_name" content="ki5n2(●’◡’●)" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-09T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="IR 5. if문, if~else문, 중첩" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-09T00:00:00-06:00","datePublished":"2022-02-09T00:00:00-06:00","description":"작성완료","headline":"IR 5. if문, if~else문, 중첩","mainEntityOfPage":{"@type":"WebPage","@id":"https://ki5n2.github.io/cobalt-blue/2022/02/09/IR.html"},"url":"https://ki5n2.github.io/cobalt-blue/2022/02/09/IR.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/cobalt-blue/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ki5n2.github.io/cobalt-blue/feed.xml" title="ki5n2(●'◡'●)" /><link rel="shortcut icon" type="image/x-icon" href="/cobalt-blue/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/cobalt-blue/">ki5n2(●&#39;◡&#39;●)</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/cobalt-blue/about/">About Me</a><a class="page-link" href="/cobalt-blue/search/">Search</a><a class="page-link" href="/cobalt-blue/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">IR 5. if문, if~else문, 중첩</h1><p class="page-description">작성완료</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-09T00:00:00-06:00" itemprop="datePublished">
+        Feb 9, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/ki5n2/cobalt-blue/tree/master/_notebooks/2022-02-09-IR.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/cobalt-blue/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/ki5n2/cobalt-blue/master?filepath=_notebooks%2F2022-02-09-IR.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/cobalt-blue/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/ki5n2/cobalt-blue/blob/master/_notebooks/2022-02-09-IR.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/cobalt-blue/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fki5n2%2Fcobalt-blue%2Fblob%2Fmaster%2F_notebooks%2F2022-02-09-IR.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/cobalt-blue/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduce-R">Introduce R </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#if문">if문 </a></li>
+<li class="toc-entry toc-h2"><a href="#if~else">if~else </a></li>
+<li class="toc-entry toc-h2"><a href="#중첩">중첩 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#간단한-응용">간단한 응용 </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-02-09-IR.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h1 id="Introduce-R">
+<a class="anchor" href="#Introduce-R" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduce R<a class="anchor-link" href="#Introduce-R"> </a>
+</h1>
+<ul>
+<li>lecture: Introduce R_4nd week of lectures.</li>
+<li>lecture date: 2021-09-30</li>
+<li>lecturer: Guebin choi</li>
+<li>study date: 2022-02-09</li>
+<li>author: Kione kim</li>
+</ul>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="if문">
+<a class="anchor" href="#if%EB%AC%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>if문<a class="anchor-link" href="#if%EB%AC%B8"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> <code>if (조건문) 표현식</code> 형태로 사용한다.(space는 무방하다.)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="m">2</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "a는 양수"
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="m">-2</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span> <span class="c1"># 참일 때만 표현식이 나타난다.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 여러개의 표현식을 사용하는 경우</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>틀린코드:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">=</span> <span class="m">-5</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> 
+    <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'양수인 a의 값은 아래와 같다.'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "양수인 a의 값은 아래와 같다."
+[1] -5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="o">-</span> 위의 코드를 뜯어보면<span class="p">,</span> <span class="n">if문에</span> 걸린 표현식은 <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span> 하나이고 뒤의 두 개의 표현식은 <span class="n">if문에</span> 걸린 것이 아니라 <span class="n">if문과는</span> 별개로 입력된 코드이다<span class="n">.</span>
+즉<span class="p">,</span> 아래의 <span class="m">3</span>개의 코드를 독립적으로 실행한 것이다<span class="n">.</span>
+<span class="n">a</span><span class="o">=</span> <span class="m">-5</span>
+<span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> 
+    <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span>
+<span class="p">(</span><span class="m">2</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'양수인 a의 값은 아래와 같다.'</span><span class="p">)</span>
+<span class="p">(</span><span class="m">3</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>해결법</code> : <code>{ }</code>를 이용</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">=</span> <span class="m">-5</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span> 
+    <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'양수인 a의 값은 아래와 같다.'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">`사용 TIP`</span><span class="o">:</span> 표현식이 하나인 경우 <span class="p">(</span><span class="n">enter을</span> 사용하지 말고<span class="p">)</span> <span class="n">if문을</span> 한 줄로 사용하고 표현식이 여러개인 경우에만 <span class="n">enter한</span> 후 <span class="p">{}</span>에 표현식을 입력해준다<span class="n">.</span>
+<span class="m">1</span><span class="n">.</span> <span class="n">a</span><span class="o">=</span> <span class="m">5</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span>
+<span class="m">2</span><span class="n">.</span> <span class="n">a</span><span class="o">=</span> <span class="m">-5</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span> 
+    <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'양수인 a의 값은 아래와 같다.'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> <code>if 조건문 표현식</code>(중요)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">-20</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  10 -20</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  TRUE FALSE</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 위의 문장은 참일까 거짓일까?<br>
+: R은 첫 번째 원소가 참이라면 참이라고 판단한다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">-20</span><span class="p">)</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'참이라면 이 문장이 출력된다.'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in if (a &gt; 0) print("참이라면 이 문장이 출력된다."):
+"length &gt; 1 이라는 조건이 있고, 첫번째 요소만이 사용될 것입니다"
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "참이라면 이 문장이 출력된다."
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>경고 메세지가 뜨긴 하지만 표현식이 출력된다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">a</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="m">20</span><span class="p">)</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'참이라면 이 문장이 출력된다.'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in if (a &gt; 0) print("참이라면 이 문장이 출력된다."):
+"length &gt; 1 이라는 조건이 있고, 첫번째 요소만이 사용될 것입니다"
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>경고메시지만 뜨고 표현식은 출력되지 않았다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>하지만 위와 같은 코드는 잘못된 코드이다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="if~else">
+<a class="anchor" href="#if~else" aria-hidden="true"><span class="octicon octicon-link"></span></a>if~else<a class="anchor-link" href="#if~else"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>사용법</code>: <code>if (조건문) 표현식1 else 표현식2</code>의 형태로 사용한다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span><span class="o">=</span> <span class="m">11</span> <span class="c1"># 예제 1</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">10</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'x는 10보다 큰 값'</span><span class="p">)</span> <span class="n">else</span> <span class="nf">print</span><span class="p">(</span><span class="s">'x는 10 이하의 값'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x는 10보다 큰 값"
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span><span class="o">=</span> <span class="m">10</span> 
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">10</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">'x는 10보다 큰 값'</span><span class="p">)</span> <span class="n">else</span> <span class="nf">print</span><span class="p">(</span><span class="s">'x는 10 이하의 값'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x는 10 이하의 값"
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span> <span class="c1"># 예제 2</span>
+<span class="nf">if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">else</span> <span class="nf">print</span><span class="p">(</span><span class="s">'x &gt; 0을 만족해야 함'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 0.6931472</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">-10</span>
+<span class="nf">if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">else</span> <span class="nf">print</span><span class="p">(</span><span class="s">'x &gt; 0을 만족해야 함'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x &gt; 0을 만족해야 함"
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">if문과</span> <span class="n">if</span><span class="o">~</span><span class="n">else문은</span> 다른 기능이다<span class="nf">. </span><span class="p">(</span><span class="n">if문에서</span> 기능이 추가된 것이 <span class="n">if</span><span class="o">~</span><span class="n">else문이</span> 아님<span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span>  <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="n">else</span>    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.302585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">else</span> 
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.302585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">else</span> 
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.302585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">else</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+Error in parse(text = x, srcfile = src): &lt;text&gt;:4:1: 예기치 않은 'else'입니다
+3:     log(x)
+4: else
+   ^
+Traceback:
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>실행이 되지 않음. 이 점을 통해 if문과 if~else문이 애초에 다른 문법의 문장이라는 것을 알 수 있음</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">if문</span><span class="o">:</span>
+<span class="n">a</span><span class="o">=</span> <span class="m">-5</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span> 
+    <span class="nf">print</span><span class="p">(</span><span class="s">'a는 양수'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'양수인 a의 값은 아래와 같다.'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="o">-</span> <span class="n">if문</span> 같은 경우 <span class="n">enter를</span> 해도 잘 실행이 됐는데<span class="p">,</span> <span class="n">if</span><span class="o">~</span><span class="n">else문은</span> <span class="n">enter를</span> 할 경우 실행이 되지 않는 경우가 있다<span class="n">.</span>
+이는 <span class="nf">if </span><span class="p">(</span>조건문<span class="p">)</span> 표현식<span class="m">1</span> <span class="n">else</span> 표현식<span class="m">2</span>의 구조를 갖는 <span class="n">if</span><span class="o">~</span><span class="n">else문에서</span><span class="p">,</span> <span class="n">else</span> 전에 <span class="n">enter를</span> 할 경우 <span class="nf">if </span><span class="p">(</span>조건문<span class="p">)</span> 표현식<span class="m">1</span> 으로 <span class="p">(</span><span class="n">if</span><span class="o">~</span><span class="n">else문이</span> 아닌<span class="p">)</span><span class="n">if문의</span> 형태로 컴퓨터가 인식하기 때문이다<span class="n">.</span>
+즉<span class="p">,</span> 이미 <span class="nf">if </span><span class="p">(</span>조건문<span class="p">)</span> 표현식 <span class="m">1</span> 로 문장이 끝난 것이고 그 후에 <span class="n">else가</span> 나오면 오류가 뜨는 것이다<span class="n">.</span>
+
+<span class="o">-</span> 또한<span class="p">,</span> <span class="n">else를</span> 표현식 <span class="m">1</span>과 함께 걸어두면 컴퓨터는 <span class="n">else를</span> 통해 아직 끝나지 않았음을 인식하기에 표현식 <span class="m">2</span>를 기다리게 된다<span class="n">.</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 사용TIP: 다음과 같이 <code>{ }</code>를 적절히 활용한다. {를 입력하고 }를 입력하지 않으면 문장이 끝나지 않았음을 인식시켜주기 때문!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span><span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.302585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.302585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>위의 코드처럼 else 뒤에 {}를 사용하지 않아도 되나, 확장성의 측면에서 사용하는 것이 좋음</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">-10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x&gt;0을 만족해야 함"
+[1] -10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.302585</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] 10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="o">-</span> 위 코드에서 <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>는 <span class="n">else에</span> <span class="n">x</span><span class="o">&gt;</span><span class="m">0</span>이 아닐 경우 <span class="n">else에</span> 걸어둔 문장이지만 <span class="n">x</span><span class="o">&gt;</span><span class="m">0</span>과 상관없이 출력되는 것을 알 수 있다<span class="n">.</span> 즉<span class="p">,</span> 
+<span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+이 하나의 코드이고
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>가 독립적인 또 다른 코드이다<span class="n">.</span>
+따라서 <span class="n">x</span><span class="o">&gt;</span><span class="m">0</span>가 아닐 경우 <span class="n">else에</span> 함께 걸어두기 위해선 <span class="p">{}</span>를 사용해야 한다<span class="n">.</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">-10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span><span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x&gt;0을 만족해야 함"
+[1] -10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span><span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">'x&gt;0을 만족해야 함'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.302585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="중첩">
+<a class="anchor" href="#%EC%A4%91%EC%B2%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>중첩<a class="anchor-link" href="#%EC%A4%91%EC%B2%A9"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="m">10</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="p">}</span><span class="n">else</span><span class="p">{</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">0</span><span class="p">){</span>
+        <span class="n">x</span><span class="o">=</span><span class="m">1e-100</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">'x=0에서는 log(x)가 정의되지 않으므로 x=1e-100의 값으로 대체함'</span><span class="p">)</span>
+        <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">}</span><span class="n">else</span><span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">'x는 음수입니다.'</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] 2.302585
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="m">0</span>
+<span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+    <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span><span class="n">else</span><span class="p">{</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">0</span><span class="p">){</span>
+        <span class="n">x</span><span class="o">=</span><span class="m">1e-100</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">'x=0에서는 log(x)가 정의되지 않으므로 x=1e-100의 값으로 대체함'</span><span class="p">)</span>
+        <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">}</span> <span class="n">else</span><span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">'x는 음수입니다.'</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x=0에서는 log(x)가 정의되지 않으므로 x=1e-100의 값으로 바꾸겠습니다."
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] -230.2585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">c</span><span class="p">(</span><span class="m">1e2</span><span class="p">,</span><span class="m">1e3</span><span class="p">)</span> <span class="c1"># 1x(10의 제곱) # 1x(10의 세제곱)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  100 1000</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">c</span><span class="p">(</span><span class="m">2.23</span><span class="p">,</span><span class="m">2.23e-3</span><span class="p">)</span> <span class="c1"># 2.23 x 10^-3</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 2.23000 0.00223</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 보통 함수의 형태로 사용한다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mylogfuc</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+        <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">}</span><span class="n">else</span><span class="p">{</span>
+        <span class="nf">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">0</span><span class="p">){</span>
+            <span class="n">x</span><span class="o">=</span><span class="m">1e-100</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">'x=0에서는 log(x)가 정의되지 않으므로 x=1e-100의 값으로 대체함'</span><span class="p">)</span>
+            <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="p">}</span><span class="n">else</span><span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">'x는 음수입니다.'</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">mylogfuc</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 4.60517</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">mylogfuc</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x=0에서는 log(x)가 정의되지 않으므로 x=1e-100의 값으로 대체함"
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] -230.2585</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">mylogfuc</span><span class="p">(</span><span class="m">-3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x는 음수입니다."
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="간단한-응용">
+<a class="anchor" href="#%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%9D%91%EC%9A%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>간단한 응용<a class="anchor-link" href="#%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%9D%91%EC%9A%A9"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mysqrtfun</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="m">0</span><span class="p">){</span>
+        <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">}</span><span class="n">else</span><span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">'x는 양수이어야합니다.'</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">mysqrtfun</span><span class="p">(</span><span class="m">-2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] "x는 양수이어야합니다."
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">mysqrtfun</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 1.414214</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="ki5n2/cobalt-blue"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/cobalt-blue/2022/02/09/IR.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/cobalt-blue/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/cobalt-blue/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/cobalt-blue/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ki5n2" target="_blank" title="ki5n2"><svg class="svg-icon grey"><use xlink:href="/cobalt-blue/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
