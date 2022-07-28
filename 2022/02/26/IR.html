@@ -1,0 +1,3318 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>IR 13. 리스트, 리스트의 서브셋팅, 리스트의 응용, 추가학습 | ki5n2(●’◡’●)</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="IR 13. 리스트, 리스트의 서브셋팅, 리스트의 응용, 추가학습" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="작성완료" />
+<meta property="og:description" content="작성완료" />
+<link rel="canonical" href="https://ki5n2.github.io/cobalt-blue/2022/02/26/IR.html" />
+<meta property="og:url" content="https://ki5n2.github.io/cobalt-blue/2022/02/26/IR.html" />
+<meta property="og:site_name" content="ki5n2(●’◡’●)" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-26T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="IR 13. 리스트, 리스트의 서브셋팅, 리스트의 응용, 추가학습" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-26T00:00:00-06:00","datePublished":"2022-02-26T00:00:00-06:00","description":"작성완료","headline":"IR 13. 리스트, 리스트의 서브셋팅, 리스트의 응용, 추가학습","mainEntityOfPage":{"@type":"WebPage","@id":"https://ki5n2.github.io/cobalt-blue/2022/02/26/IR.html"},"url":"https://ki5n2.github.io/cobalt-blue/2022/02/26/IR.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/cobalt-blue/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ki5n2.github.io/cobalt-blue/feed.xml" title="ki5n2(●'◡'●)" /><link rel="shortcut icon" type="image/x-icon" href="/cobalt-blue/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/cobalt-blue/">ki5n2(●&#39;◡&#39;●)</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/cobalt-blue/about/">About Me</a><a class="page-link" href="/cobalt-blue/search/">Search</a><a class="page-link" href="/cobalt-blue/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">IR 13. 리스트, 리스트의 서브셋팅, 리스트의 응용, 추가학습</h1><p class="page-description">작성완료</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-26T00:00:00-06:00" itemprop="datePublished">
+        Feb 26, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/ki5n2/cobalt-blue/tree/master/_notebooks/2022-02-26-IR.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/cobalt-blue/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/ki5n2/cobalt-blue/master?filepath=_notebooks%2F2022-02-26-IR.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/cobalt-blue/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/ki5n2/cobalt-blue/blob/master/_notebooks/2022-02-26-IR.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/cobalt-blue/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fki5n2%2Fcobalt-blue%2Fblob%2Fmaster%2F_notebooks%2F2022-02-26-IR.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/cobalt-blue/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduce-R">Introduce R </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#리스트">리스트 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#예제1">예제1 </a></li>
+<li class="toc-entry toc-h3"><a href="#예제2">예제2 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#리스트의-서브셋팅">리스트의 서브셋팅 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#방법-1:-[-]를-이용,-리스트를-리턴">방법 1: [ ]를 이용, 리스트를 리턴 </a></li>
+<li class="toc-entry toc-h3"><a href="#방법-2:-[[-]]를-이용,-리스트의-요소를-추출">방법 2: [[ ]]를 이용, 리스트의 요소를 추출 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#리스트의-응용:-함수의-return()으로-사용">리스트의 응용: 함수의 return()으로 사용 </a></li>
+<li class="toc-entry toc-h2"><a href="#추가학습">추가학습 </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-02-26-IR.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h1 id="Introduce-R">
+<a class="anchor" href="#Introduce-R" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduce R<a class="anchor-link" href="#Introduce-R"> </a>
+</h1>
+<ul>
+<li>lecture: Introduce R_10nd week of lectures</li>
+<li>lecture date: 2021-11-16</li>
+<li>lecturer: Guebin choi</li>
+<li>study date: 2022-02-26</li>
+<li>author: Kione kim</li>
+</ul>
+<hr>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">jupyter.rich_display</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="리스트">
+<a class="anchor" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>리스트<a class="anchor-link" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="예제1">
+<a class="anchor" href="#%EC%98%88%EC%A0%9C1" aria-hidden="true"><span class="octicon octicon-link"></span></a>예제1<a class="anchor-link" href="#%EC%98%88%EC%A0%9C1"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lst</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="m">5</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="s">"A"</span><span class="p">,</span><span class="s">"B"</span><span class="p">,</span><span class="s">"C"</span><span class="p">),</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span><span class="bp">T</span><span class="p">,</span><span class="bp">F</span><span class="p">,</span><span class="bp">T</span><span class="p">),</span><span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lst</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[[1]]
+[1]  5  6  7  8  9 10
+
+[[2]]
+[1] "A" "B" "C"
+
+[[3]]
+     [,1]  [,2]
+[1,] TRUE FALSE
+[2,] TRUE  TRUE
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>리스트의 첫번째 원소 = 숫자로 이루어진 벡터</li>
+<li>리스트의 두번째 원소 = 문자로 이루어진 벡터</li>
+<li>리스트의 세번째 원소 = True/False로 이루어진 매트릭스</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 리스트의 각 원소를 추출하는 방법</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lst</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  5  6  7  8  9 10</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">lst</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span> <span class="o">+</span> <span class="m">5</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 10 11 12 13 14 15</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 리스트의 길이</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">length</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 리스트를 사용하는 이유: $(1)$ 함수에서 여러개의 리턴값을 주는 효과 $(2)$ 정리의 효과</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="예제2">
+<a class="anchor" href="#%EC%98%88%EC%A0%9C2" aria-hidden="true"><span class="octicon octicon-link"></span></a>예제2<a class="anchor-link" href="#%EC%98%88%EC%A0%9C2"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="s">"</span><span class="err">mid = list(c('A','B','C'),c(90,100,95))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mid</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[[1]]
+[1] "A" "B" "C"
+
+[[2]]
+[1]  90 100  95
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>NULL</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">'student'</span><span class="p">,</span><span class="s">'score'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mid</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$student
+[1] "A" "B" "C"
+
+$score
+[1]  90 100  95
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "student" "score"  </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>보기에 깔끔함</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mid</span><span class="o">$</span><span class="n">student</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mid</span><span class="o">$</span><span class="n">score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  90 100  95</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>데이터에 접근하기 좋음</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mid</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mid</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  90 100  95</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>위와 동일한 코드</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 리스트를 카피 후 재생성하는데 좋음</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">mid</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$student
+[1] "A" "B" "C"
+
+$score
+[1]  90 100  95
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">mid</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">final</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$student
+[1] "A" "B" "C"
+
+$score
+[1]  90 100  95
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 모든 학생의 기말 점수가 중간 점수보다 10점씩 낮을 경우</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">final</span><span class="o">$</span><span class="n">score</span> <span class="o">=</span> <span class="n">mid</span><span class="o">$</span><span class="n">score</span> <span class="o">-</span> <span class="m">10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">final</span><span class="o">$</span><span class="n">score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 80 90 85</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">final</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$student
+[1] "A" "B" "C"
+
+$score
+[1] 80 90 85
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 리스트를 묶어서 새로운 리스트를 생성할 수 있음</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span><span class="n">final</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[[1]]
+[[1]]$student
+[1] "A" "B" "C"
+
+[[1]]$score
+[1]  90 100  95
+
+
+[[2]]
+[[2]]$student
+[1] "A" "B" "C"
+
+[[2]]$score
+[1] 80 90 85
+
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 리스트의 이름을 입력할 수 있다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">IR2022</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>NULL</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">IR2022</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">"mid"</span><span class="p">,</span><span class="s">"final"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$mid
+$mid$student
+[1] "A" "B" "C"
+
+$mid$score
+[1]  90 100  95
+
+
+$final
+$final$student
+[1] "A" "B" "C"
+
+$final$score
+[1] 80 90 85
+
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">mid</span><span class="o">$</span><span class="n">student</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">mid</span><span class="o">$</span><span class="n">score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  90 100  95</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">final</span><span class="o">$</span><span class="n">student</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">final</span><span class="o">$</span><span class="n">score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 80 90 85</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 학생의 이름, 중간점수, 기말점수만 출력하고 싶다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">mid</span><span class="o">$</span><span class="n">student</span><span class="p">,</span> <span class="n">mid</span><span class="o">$</span><span class="n">score</span><span class="p">,</span> <span class="n">final</span><span class="o">$</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[[1]]
+[1] "A" "B" "C"
+
+[[2]]
+[1]  90 100  95
+
+[[3]]
+[1] 80 90 85
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>원하는 형태로 출력되긴 했으나, 이름이 지정되지 않았다. 다음과 같이 하면 이름이 함께 입력된다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">mid</span><span class="o">$</span><span class="n">student</span><span class="p">,</span> <span class="n">mid</span><span class="o">=</span><span class="n">mid</span><span class="o">$</span><span class="n">score</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">final</span><span class="o">$</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$name
+[1] "A" "B" "C"
+
+$mid
+[1]  90 100  95
+
+$final
+[1] 80 90 85
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="리스트의-서브셋팅">
+<a class="anchor" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EC%84%9C%EB%B8%8C%EC%85%8B%ED%8C%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>리스트의 서브셋팅<a class="anchor-link" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EC%84%9C%EB%B8%8C%EC%85%8B%ED%8C%85"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="방법-1:-[-]를-이용,-리스트를-리턴">
+<a class="anchor" href="#%EB%B0%A9%EB%B2%95-1:-%5B-%5D%EB%A5%BC-%EC%9D%B4%EC%9A%A9,-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EB%A6%AC%ED%84%B4" aria-hidden="true"><span class="octicon octicon-link"></span></a>방법 1: <code>[ ]</code>를 이용, 리스트를 리턴<a class="anchor-link" href="#%EB%B0%A9%EB%B2%95-1:-%5B-%5D%EB%A5%BC-%EC%9D%B4%EC%9A%A9,-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EB%A6%AC%ED%84%B4"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$name
+[1] "A" "B" "C"
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>길이가 1인 리스트를 리턴</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$name
+[1] "A" "B" "C"
+
+$mid
+[1]  90 100  95
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>길이가 1~2인 리스트를 리턴</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$name
+[1] "A" "B" "C"
+
+$mid
+[1]  90 100  95
+
+$final
+[1] 80 90 85
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$name
+[1] "A" "B" "C"
+
+$mid
+[1]  90 100  95
+
+$final
+[1] 80 90 85
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>길이가 1~3인 리스트를 리턴</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$name
+[1] "A" "B" "C"
+
+$final
+[1] 80 90 85
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[</span><span class="m">-2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$name
+[1] "A" "B" "C"
+
+$final
+[1] 80 90 85
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>길이가 1,3인 리스트를 리턴</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="방법-2:-[[-]]를-이용,-리스트의-요소를-추출">
+<a class="anchor" href="#%EB%B0%A9%EB%B2%95-2:-%5B%5B-%5D%5D%EB%A5%BC-%EC%9D%B4%EC%9A%A9,-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EC%9A%94%EC%86%8C%EB%A5%BC-%EC%B6%94%EC%B6%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>방법 2: <code>[[ ]]</code>를 이용, 리스트의 요소를 추출<a class="anchor-link" href="#%EB%B0%A9%EB%B2%95-2:-%5B%5B-%5D%5D%EB%A5%BC-%EC%9D%B4%EC%9A%A9,-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EC%9A%94%EC%86%8C%EB%A5%BC-%EC%B6%94%EC%B6%9C"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1]  90 100  95</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="m">3</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 80 90 85</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> <code>[ ]</code>와 다르게</p>
+<ol>
+<li>
+<p>제외하고를 뜻하는 <code>[-n]</code>은 동작하지 않음</p>
+</li>
+<li>
+<p><code>[1:n] or [c(1,...,n)]</code> 또한 의도와 다르게 동작</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="m">-3</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+Error in IR2022[[-3]]: invalid negative subscript in get1index &lt;real&gt;
+Traceback:
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "B"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "B"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>위에서 언급한 것처럼 원하는 결과가 나오지 않았는데, 이는 아래의 코드가 실행된 것과 같은 결과임</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="m">1</span><span class="p">]][</span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "B"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> <code>$</code>연산자</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">name</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> <code>[[name]]</code>도 같은 형태</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">name</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="s">'name'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> <code>$</code>와 <code>[[ ]]</code>의 기능이 같기 때문에 언제나 <code>$</code>와 <code>[[]]</code>를 서로 바꿔도 될 것 같으나, 항상 그런 것은 아니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">n</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="p">[[</span><span class="s">'n'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>NULL</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> <code>$</code>와 <code>[[ ]]</code>의 차이는 파샬매칭(partial matching)을 허용하는지 여부이다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">n</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">na</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] "A" "B" "C"</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 그렇다고 비슷한 모든 형태가 동작되지는 않는다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>NULL</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">IR2022</span><span class="o">$</span><span class="n">ame</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>NULL</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>첫글자(+)가 동일해야 함</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="리스트의-응용:-함수의-return()으로-사용">
+<a class="anchor" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EC%9D%91%EC%9A%A9:-%ED%95%A8%EC%88%98%EC%9D%98-return()%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>리스트의 응용: 함수의 return()으로 사용<a class="anchor-link" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EC%9D%91%EC%9A%A9:-%ED%95%A8%EC%88%98%EC%9D%98-return()%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> R에서는 일반적으로 하나의 오브젝트만 리턴하지만 리스트를 사용하면 다중리턴을 지원하는 것처럼 느낄 수 있음</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">cal</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">){</span>
+    <span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">/</span><span class="n">y</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cal</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+Error in return(x + y, x - y, x * y, x/y): 다중인자 반환은 허용되지 않습니다
+Traceback:
+
+1. cal(2, 3)</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">cal</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">){</span>
+    <span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cal</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>하나의 오브젝트만 리턴가능</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 하지만, 리스트의 형태로 하면 다중리턴 가능함</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">cal</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">){</span>
+    <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">/</span><span class="n">y</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cal</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[[1]]
+[1] 5
+
+[[2]]
+[1] -1
+
+[[3]]
+[1] 6
+
+[[4]]
+[1] 0.6666667
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">cal</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">){</span>
+    <span class="nf">return</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">add</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="n">sub</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">,</span> <span class="n">mul</span><span class="o">=</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">dic</span><span class="o">=</span><span class="n">x</span><span class="o">/</span><span class="n">y</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cal</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>$add
+[1] 5
+
+$sub
+[1] -1
+
+$mul
+[1] 6
+
+$dic
+[1] 0.6666667
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 리스트를 통한 다중리턴의 장점: 코드가 간결</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 함수의 결과값을 저장하여 아래와 같이 사용</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">rslt</span> <span class="o">&lt;-</span> <span class="nf">cal</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">rslt</span><span class="o">$</span><span class="n">add</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">rslt</span><span class="o">$</span><span class="n">sub</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 아래와 같이 사용하지는 않음</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cal</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)</span><span class="o">$</span><span class="n">add</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">cal</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">)</span><span class="o">$</span><span class="n">sub</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>이유는 저장된 결과값에 대한 출력만 수행해주는 첫 번째 코드와는 달리 두 번째 코드는 각 코드를 실행할 때마다 함수가 실행되어 불필요한 계산이 실행됨. 즉, 효율성이 떨어짐</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="추가학습">
+<a class="anchor" href="#%EC%B6%94%EA%B0%80%ED%95%99%EC%8A%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>추가학습<a class="anchor-link" href="#%EC%B6%94%EA%B0%80%ED%95%99%EC%8A%B5"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 기본적인 자료형 vector, matrix, list에 기능을 스스로 정리해보고 요약해볼것</p>
+<ul>
+<li>벡터의 길이를 재려면 어떻게 해야하는지? </li>
+<li>매트릭스의 차원은 어떻게 알 수 있는지? </li>
+<li>리스트의 원소에 접근하려면? </li>
+<li>$n\times 1$ 매트릭스 혹은 $1\times n$ 매트릭스를 쓰면 되는데 왜 굳이 벡터를 만들었을까? </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 벡터 ${\bf x}$와 벡터 ${\bf y}$를 아래의 코드를 이용해 표준 정규분포에서 생성하라. (표준정규분포를 모른다면 질문하거나 네이버 구글에서 스스로 찾아볼것)</p>
+<div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+</pre></div>
+<p>아래의 수식을 계산하는 코드를 작성하라.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$\frac{\sum_{i=1}^{100}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^{100}(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^{100}(y_i-\bar{y})^2}}$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>단 $\bar{x}=\frac{1}{100}\sum_{i=1}^{100}x_i$로 정의한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 풀이1</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="m">2</span><span class="p">)</span><span class="o">*</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">**</span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] -2.282807e+30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 풀이2</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$\frac{\sum_{i=1}^{100}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^{100}(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^{100}(y_i-\bar{y})^2}} =\frac{A}{BC}$$
+</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="m">0</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">)</span> <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">A</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] -11.02912</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">B</span><span class="o">=</span><span class="m">0</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">)</span> <span class="n">B</span><span class="o">=</span><span class="n">B</span><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="m">2</span>
+<span class="n">B</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 9.909512</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">C</span><span class="o">=</span><span class="m">0</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">)</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="o">+</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">**</span><span class="m">2</span>
+<span class="n">C</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">C</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] 10.35376</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">A</span><span class="o">/</span><span class="p">(</span><span class="n">B</span><span class="o">*</span><span class="n">C</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[1] -0.1074956</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 풀이3</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>: 벡터의 내적<code>%*%</code>을 통한 풀이</p>
+<p><code>벡터의 내적:</code> $x = (x_1, ... ,x_{100})$이고 $y = (y_1, ... , y_{100})$라 할 때 두 벡터의 내적은 다음과 같다.</p>
+<p>
+$${\bf x} \cdot {\bf y} = x_1y_1 + ... + x_{100}y_{100}$$
+</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">A</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>     [,1]     
+[1,] -11.02912</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">B</span><span class="o">=</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span> <span class="o">%*%</span> <span class="p">(</span><span class="nf">sqrt</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))))</span>
+<span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>     [,1]    
+[1,] 102.6007</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">A</span><span class="o">/</span><span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>     [,1]      
+[1,] -0.1074956</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> $x-mean(x) =$ xx, $y-mean(y) =$ yy 로 치환하면 다음과 같이 깔끔하게 정리할 수 있음</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">xx</span><span class="o">=</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">yy</span><span class="o">=</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">xx</span> <span class="o">%*%</span> <span class="n">yy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>     [,1]     
+[1,] -11.02912</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">sqrt</span><span class="p">(</span><span class="n">xx</span> <span class="o">%*%</span> <span class="n">xx</span><span class="p">)</span> <span class="o">%*%</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">yy</span> <span class="o">%*%</span> <span class="n">yy</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>     [,1]    
+[1,] 102.6007</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">xx</span> <span class="o">%*%</span> <span class="n">yy</span><span class="o">/</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">xx</span> <span class="o">%*%</span> <span class="n">xx</span><span class="p">)</span> <span class="o">%*%</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">yy</span> <span class="o">%*%</span> <span class="n">yy</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>     [,1]      
+[1,] -0.1074956</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="ki5n2/cobalt-blue"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/cobalt-blue/2022/02/26/IR.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/cobalt-blue/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/cobalt-blue/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/cobalt-blue/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/ki5n2" target="_blank" title="ki5n2"><svg class="svg-icon grey"><use xlink:href="/cobalt-blue/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
